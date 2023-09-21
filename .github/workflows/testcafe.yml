@@ -19,4 +19,4 @@ jobs:
         uses: DevExpress/testcafe-action@latest
         with:
           skip-install: true
-          args: chrome tests/tests* --concurrency ${{ steps.cpu-cores.outputs.count }}
+          args: chrome:headless tests/tests_* --concurrency ${{ steps.cpu-cores.outputs.count }}
