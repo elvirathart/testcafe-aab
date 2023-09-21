@@ -4,7 +4,7 @@ import logoutPage from "./logout_page";
 import { users } from './data/users'
 
 fixture`Test automation - login`
-  .page`file://${process.cwd()}/../testautomation-web/index.html`;
+  .page`file://${process.cwd()}/testautomation-web/index.html`;
 
 for (const user of users) {
   test(`Login and Sign Out test user ${user.email}`, async (t) => {
@@ -20,7 +20,7 @@ for (const user of users) {
 }
 
 fixture`Test automation - login page misc`
-  .page`file://${process.cwd()}/../testautomation-web/index.html`;
+  .page`file://${process.cwd()}/testautomation-web/index.html`;
 
 test("Assert header text", async (t) => {
   await loginPage.loginAdmin();
