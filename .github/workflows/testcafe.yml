@@ -10,7 +10,10 @@ jobs:
         with:
           node-version: lts/*
       - uses: actions/checkout@v1
+      - name: Get number of CPU cores
+        uses: SimenB/github-actions-cpu-cores@v1
+        id: cpu-cores
       - name: Run TestCafe Tests
         uses: DevExpress/testcafe-action@latest
         with:
-          args: chrome tests
+          args: chrome tests --concurrency ${{ steps.cpu-cores.outputs.count }}
