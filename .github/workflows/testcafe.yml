@@ -9,6 +9,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: lts/*
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
       - uses: actions/checkout@v1
       - name: Get number of CPU cores
         uses: SimenB/github-actions-cpu-cores@v1
@@ -16,4 +18,5 @@ jobs:
       - name: Run TestCafe Tests
         uses: DevExpress/testcafe-action@latest
         with:
+          skip-install: true
           args: chrome tests --concurrency ${{ steps.cpu-cores.outputs.count }}
