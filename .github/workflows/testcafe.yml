@@ -6,12 +6,12 @@ jobs:
     name: Install Node and launch TestCafe tests in Chrome
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: lts/*
-          cache: 'npm'
-          cache-dependency-path: '**/package-lock.json'
-      - uses: actions/checkout@v1
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
       - name: Get number of CPU cores
         uses: SimenB/github-actions-cpu-cores@v1
         id: cpu-cores
