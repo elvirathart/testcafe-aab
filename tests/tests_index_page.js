@@ -1,8 +1,9 @@
 import loginPage from "./login_page";
 import indexPage from "./index_page";
+import { pathPrefix } from "./util";
 
 fixture`Test automation - web`
-  .page`file://${process.cwd()}/testautomation-web/index.html`;
+  .page`file://${process.cwd()}${pathPrefix}/testautomation-web/index.html`;
 
 test("Assert content text", async (t) => {
   await loginPage.loginAdmin();
