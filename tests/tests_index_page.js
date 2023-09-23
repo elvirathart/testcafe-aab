@@ -2,7 +2,7 @@ import loginPage from "./login_page";
 import indexPage from "./index_page";
 import { pathPrefix } from "./util";
 
-fixture`Test automation - web`
+fixture`Test - Index - text`
   .page`file://${process.cwd()}${pathPrefix}/testautomation-web/index.html`;
 
 test("Assert content text", async (t) => {
@@ -16,23 +16,21 @@ test("Assert content text", async (t) => {
   );
 });
 
-test("Assert Home in navigation header", async (t) => {
-  await loginPage.loginAdmin();
+const navigation = [
+  { type: 'Home', nav: indexPage.navHome },
+  { type: 'Products', nav: indexPage.navProducts },
+  { type: 'Contact', nav: indexPage.navContact },
+];
 
-  const nav = indexPage.navHome.exists;
-  await t.expect(nav).ok("'Home' is not found in the nav header");
-});
+fixture `Test - Index - navigation headers`
+  .page`file://${process.cwd()}${pathPrefix}/testautomation-web/index.html`
+  .beforeEach(async t => {
+    await loginPage.loginAdmin();
+  });
 
-test("Assert Products in navigation header", async (t) => {
-  await loginPage.loginAdmin();
-
-  const nav = indexPage.navProducts.exists;
-  await t.expect(nav).ok("'Products' is not found in the nav header");
-});
-
-test("Assert Contact in navigation header", async (t) => {
-  await loginPage.loginAdmin();
-
-  const nav = indexPage.navContact.exists;
-  await t.expect(nav).ok("'Contact' is not found in the nav header");
-});
+  for (const link of navigation) {
+  test(`Assert ${link.type} in navigation header`, async t => {
+    const isLinkVisible = item.nav.exists;
+    await t.expect(isLinkVisible).ok(`'${link.type}' is not found in the nav header`);
+  });
+};
