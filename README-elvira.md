@@ -11,7 +11,7 @@ __Login_page__
 
 I separated the log out function as a page, because this is (when there are more pages) usually repeated on all / more pages of the app. I would give all more complicated features or features that are repeated on several pages their own page.
 
-The users.js file is copied to tests/data. Instead of using the same data source as the code, I chose to repeat the data so the tests fails when there are changes on the code side. After confirming that changes were made on purpose the test data should be changed.
+The users.js file is copied to tests / data. Instead of using the same data source as the code, I chose to repeat the data so the tests fails when there are changes on the code side. After confirming that changes were made on purpose the test data should be changed.
 
 On the login_page.js I made a login function that takes in the email and password as arguments.
 The input field does not clear itself after a login attempt - in my opnion a big issue (escpecially for a bank or any other app with sensitive client information)
@@ -33,11 +33,14 @@ There is also a test for the items in the navigation header. The login is a befo
 
 __Other automation / optimalizations__
 
-I completed the yml file I found in the github folder so it can run in github actions. 
+I completed the yml testcafe file in the github folder so it can run in github actions. 
 Locally I use the testfolder as the testdirectory, CI runs from what it considers workspace root. I added a patch in util.js to support both cases.
 
 Running the tests was quite slow, therefor I tried to speed it up a bit by specifying in .testcaferc.js in which folder to look for tests, running the browser headless and use concurrency.
 To speed the tests up in the pipeline I added in the yml cache for npm and dependencies in the package-lock.json, headless and concurrency.
+
+Finally, I also incorporated an HTML reporter during the test execution process. This HTML reporter generates a detailed report that includes a timestamp, and is automatically saved as an artifact within the GitHub Actions workflow for easy access and review.
+
 
 *Thanks for the assignment!*
 
