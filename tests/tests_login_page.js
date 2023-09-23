@@ -1,11 +1,13 @@
 import loginPage from "./login_page";
 import indexPage from "./index_page";
-import logoutPage from "./logout_page";
 import { users } from './data/users'
 import { pathPrefix } from "./util";
 
 fixture`Test - Login - users`
-  .page`file://${process.cwd()}${pathPrefix}/testautomation-web/index.html`;
+  .page`file://${process.cwd()}${pathPrefix}/testautomation-web/index.html`
+  .afterEach(async t => {
+    await loginPage.logout();
+  });
 
 for (const user of users) {
   test(`Login and Sign Out user ${user.email}`, async (t) => {
@@ -15,8 +17,6 @@ for (const user of users) {
     await t
       .expect(navHeaderExists)
       .ok(`${user.email} failed to log in`);
-
-    await logoutPage.logout();
   });
 }
 
@@ -24,6 +24,9 @@ fixture `Test - Login - text`
   .page`file://${process.cwd()}${pathPrefix}/testautomation-web/index.html`
   .beforeEach(async t => {
     await loginPage.loginAdmin();
+  })
+  .afterEach(async t => {
+    await loginPage.logout();
   });
 
 test("Assert header text", async (t) => {
