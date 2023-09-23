@@ -8,6 +8,8 @@ class loginPage {
     this.loginButton = Selector("input#login");
     this.headerText = Selector("h1");
     this.footerText = Selector("footer");
+    this.userSection = Selector('section#user')
+    this.Signout = Selector('div#logout')
   }
   async login(email, password) {
     await t
@@ -21,6 +23,12 @@ class loginPage {
 
     await this.login(admin.email, admin.password);
     return;
+  }
+  // assuming after login, the sign out button is accessable on all pages in the same way.
+  async logout() {
+      await t
+      .click(this.userSection)
+      .click(this.Signout)
   }
 }
 
