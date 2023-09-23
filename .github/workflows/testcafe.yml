@@ -26,10 +26,10 @@ jobs:
         uses: DevExpress/testcafe-action@latest
         with:
           skip-install: true
-          args: chrome:headless tests/tests_* --concurrency ${{ steps.cpu-cores.outputs.count }} --reporter html:./testreports/report_$(date +"%Y%m%d%H%M%S").html
+          args: chrome:headless tests/tests_* --concurrency ${{ steps.cpu-cores.outputs.count }} --reporter html:./testreports/report.html
 
       - name: Upload Testcafe Reports
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: testreports
           path: ${{ github.workspace }}/testreports
