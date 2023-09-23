@@ -2,12 +2,13 @@ import loginPage from "./login_page";
 import indexPage from "./index_page";
 import { pathPrefix } from "./util";
 
-fixture`Test - Index - text`
+fixture `Test - Index - text`
   .page`file://${process.cwd()}${pathPrefix}/testautomation-web/index.html`;
+  .beforeEach(async t => {
+    await loginPage.loginAdmin();
+  });
 
 test("Assert content text", async (t) => {
-  await loginPage.loginAdmin();
-
   const text = await indexPage.contentText.innerText;
   await t.expect(text).eql(
     // test dependent whether /Lorem ipsum/ or full text
