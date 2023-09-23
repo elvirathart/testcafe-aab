@@ -3,9 +3,12 @@ import indexPage from "./index_page";
 import { pathPrefix } from "./util";
 
 fixture `Test - Index - text`
-  .page`file://${process.cwd()}${pathPrefix}/testautomation-web/index.html`;
+  .page`file://${process.cwd()}${pathPrefix}/testautomation-web/index.html`
   .beforeEach(async t => {
     await loginPage.loginAdmin();
+  })
+  .afterEach(async t => {
+    await loginPage.logout();
   });
 
 test("Assert content text", async (t) => {
@@ -27,6 +30,9 @@ fixture `Test - Index - navigation headers`
   .page`file://${process.cwd()}${pathPrefix}/testautomation-web/index.html`
   .beforeEach(async t => {
     await loginPage.loginAdmin();
+  })
+  .afterEach(async t => {
+    await loginPage.logout();
   });
 
   for (const link of navigation) {
