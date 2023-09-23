@@ -12,11 +12,17 @@ jobs:
           node-version: lts/*
           cache: "npm"
           cache-dependency-path: "**/package-lock.json"
+          
       - name: Get number of CPU cores
         uses: SimenB/github-actions-cpu-cores@v1
         id: cpu-cores
+
+      - name: Create Test Reports Directory
+        run: |
+          mkdir -p testreports
+      
       - name: Run TestCafe Tests
         uses: DevExpress/testcafe-action@latest
         with:
           skip-install: true
-          args: chrome:headless tests/tests_* --concurrency ${{ steps.cpu-cores.outputs.count }}
+          args: chrome:headless tests/tests_* --concurrency ${{ steps.cpu-cores.outputs.count }} --reporter html:./testreports/report_$(date +"%Y%m%d%H%M%S").html
