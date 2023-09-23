@@ -27,3 +27,9 @@ jobs:
         with:
           skip-install: true
           args: chrome:headless tests/tests_* --concurrency ${{ steps.cpu-cores.outputs.count }} --reporter html:./testreports/report_$(date +"%Y%m%d%H%M%S").html
+
+      - name: Upload Testcafe Reports
+        uses: actions/upload-artifact@v2
+        with:
+          name: testreports
+          path: ./testreports
