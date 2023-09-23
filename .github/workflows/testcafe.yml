@@ -12,6 +12,7 @@ jobs:
           node-version: lts/*
           cache: "npm"
           cache-dependency-path: "**/package-lock.json"
+      - run: npm install    
           
       - name: Get number of CPU cores
         uses: SimenB/github-actions-cpu-cores@v1
