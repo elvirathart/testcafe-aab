@@ -4,27 +4,29 @@ import logoutPage from "./logout_page";
 import { users } from './data/users'
 import { pathPrefix } from "./util";
 
-fixture`Test automation - login`
+fixture`Test - Login - users`
   .page`file://${process.cwd()}${pathPrefix}/testautomation-web/index.html`;
 
 for (const user of users) {
-  test(`Login and Sign Out test user ${user.email}`, async (t) => {
+  test(`Login and Sign Out user ${user.email}`, async (t) => {
     await loginPage.login(user.email, user.password);
 
     const navHeaderExists = indexPage.navHeader.exists;
     await t
       .expect(navHeaderExists)
-      .ok(`Navigating to the index page failed with user ${user.email}`);
+      .ok(`${user.email} failed to log in`);
 
     await logoutPage.logout();
   });
 }
 
-fixture`Test automation - login page misc`
-  .page`file://${process.cwd()}${pathPrefix}/testautomation-web/index.html`;
+fixture `Test - Login - text`
+  .page`file://${process.cwd()}${pathPrefix}/testautomation-web/index.html`
+  .beforeEach(async t => {
+    await loginPage.loginAdmin();
+  });
 
 test("Assert header text", async (t) => {
-  await loginPage.loginAdmin();
   const text = await loginPage.headerText.innerText;
   await t
     .expect(text)
@@ -35,7 +37,6 @@ test("Assert header text", async (t) => {
 });
 
 test("Assert footer text", async (t) => {
-  await loginPage.loginAdmin();
   const text = await loginPage.footerText.innerText;
   await t
     .expect(text)
