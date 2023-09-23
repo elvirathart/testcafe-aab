@@ -1,15 +1,14 @@
 # Test assignment aab
 __testcafe and JavaScript__
 
-I divided the environment into 3 pages:
+The environment exists of 2 pages, which I mirrored in testcode:
 - login_page.js
 - index_page.js
-- logout_page.js
-
 
 __Login_page__
 
-I separated the log out function as a page, because this is (when there are more pages) usually repeated on all / more pages of the app. I would give all more complicated features or features that are repeated on several pages their own page.
+I combined the log in and log out function on the same page, they are both a authentication-related functionality and belong together. This makes them easy to find and maintain. 
+Other features that are repeated on several pages or for example more complicated features I would usually give their own page.
 
 The users.js file is copied to tests / data. Instead of using the same data source as the code, I chose to repeat the data so the tests fails when there are changes on the code side. After confirming that changes were made on purpose the test data should be changed.
 
