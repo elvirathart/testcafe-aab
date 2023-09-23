@@ -30,7 +30,7 @@ fixture `Test - Index - navigation headers`
 
   for (const link of navigation) {
   test(`Assert ${link.type} in navigation header`, async t => {
-    const isLinkVisible = item.nav.exists;
+    const isLinkVisible = link.nav.exists;
     await t.expect(isLinkVisible).ok(`'${link.type}' is not found in the nav header`);
   });
 };
