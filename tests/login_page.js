@@ -22,7 +22,6 @@ class loginPage {
     if (!admin) throw Error("admin not found");
 
     await this.login(admin.email, admin.password);
-    return;
   }
   // assuming after login, the sign out button is accessable on all pages in the same way.
   async logout() {
