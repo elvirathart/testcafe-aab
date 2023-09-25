@@ -29,7 +29,7 @@ jobs:
           args: chrome:headless tests/tests_* --concurrency ${{ steps.cpu-cores.outputs.count }} --reporter html:./testreports/report_$(date +"%d-%m-%Y").html
 
       - name: Upload Testcafe Reports
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: testreports
           path: ${{ github.workspace }}/testreports
